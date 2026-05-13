@@ -1,6 +1,8 @@
 using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Runtime.Intrinsics.Arm;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.OpenApi;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -20,8 +22,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "CRM API v1"));
 }
 
-
-app.UseHttpRedirection();
+app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllerRoute(
@@ -29,5 +30,5 @@ app.MapControllerRoute(
     pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}"
 );
 
-app.Rum();
+app.Run();
 

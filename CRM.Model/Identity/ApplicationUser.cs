@@ -2,6 +2,7 @@ using System.ComponentModel;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Runtime.CompilerServices;
 using Microsoft.AspNetCore.Identity;
+using CRM.Model.Enums;
 namespace CRM.Model.Identity;
 public class ApplicationUser : IdentityUser
 {
