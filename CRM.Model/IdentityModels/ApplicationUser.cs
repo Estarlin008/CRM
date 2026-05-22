@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Runtime.CompilerServices;
 using Microsoft.AspNetCore.Identity;
 using CRM.Model.Enums;
-namespace CRM.Model.Identity;
+namespace CRM.Model.IdentityModels;
 public class ApplicationUser : IdentityUser
 {
     public string? FirstName { get; set; }
