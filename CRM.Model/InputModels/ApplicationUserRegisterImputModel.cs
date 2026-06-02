@@ -3,7 +3,7 @@ using System.Runtime.CompilerServices;
 
 namespace CRM.Model.InputModels
 {
-    public class ApplicationUserInputModel
+    public class ApplicationUserRegisterImputModel
     {
         [Required]
         public required string FirstName { get; set; }

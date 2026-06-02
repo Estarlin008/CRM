@@ -3,7 +3,8 @@ using System.Runtime.CompilerServices;
 
 namespace CRM.Service;
 
-public class AuthenticationService(UserManager<ApplicationUser> userManager): IAuthenticationService
+public class AuthenticationService(UserManager<ApplicationUser> userManager,
+    SignInManager<ApplicationUser> signInManager): IAuthenticationService
 {
 
     public Task<bool> ChangePasswordAsync(ApplicationUserInputModel model){
@@ -14,7 +15,7 @@ public class AuthenticationService(UserManager<ApplicationUser> userManager): IA
         throw new NotImplementedException();
     }   
 
-    public Task<bool> LoginAsync(ApplicationUserInputModel model){
+    public Task<bool> LoginAsync(ApplicationUserLoginInputModel model){
         throw new NotImplementedException();
     }
 
