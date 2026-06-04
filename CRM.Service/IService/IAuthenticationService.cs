@@ -1,3 +1,4 @@
+using CRM.Model.InputModels;
 namespace CRM.Service.IService
 {
     public interface IAuthenticationService
@@ -7,6 +8,6 @@ namespace CRM.Service.IService
         Task<bool> ForgotPasswordAsync(ApplicationUserRegisterImputModel model);
         Task<bool> ResetPasswordAsync(ApplicationUserRegisterImputModel model);
         Task<bool> ChangePasswordAsync(ApplicationUserRegisterImputModel model);
-        Task<bool> RefershTokenAsync(ApplicationUserRegisterImputModel model);
+        Task<bool> RefreshTokenAsync(ApplicationUserRegisterImputModel model);
     }
 }

@@ -1,5 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 using System.Runtime.CompilerServices;
+using CRM.Model.Enums;
 
 namespace CRM.Model.InputModels
 {

@@ -1,29 +1,37 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.Runtime.CompilerServices;
+using CRM.Model.IdentityModels;
+using CRM.Model.InputModels;
+using CRM.Service.IService;
+using Microsoft.AspNetCore.Identity;
 
 namespace CRM.Service;
 
-public class AuthenticationService(UserManager<ApplicationUser> userManager,
-    SignInManager<ApplicationUser> signInManager): IAuthenticationService
+public class AuthenticationService(UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager): IAuthenticationService
 {
 
-    public Task<bool> ChangePasswordAsync(ApplicationUserInputModel model){
+    public Task<bool> ChangePasswordAsync(ApplicationUserRegisterImputModel model)
+    {
         throw new NotImplementedException();
     }
 
-    public Task<bool> ForgotPasswordAsync(ApplicationUserInputModel model){
-        throw new NotImplementedException();
-    }   
-
-    public Task<bool> LoginAsync(ApplicationUserLoginInputModel model){
+    public Task<bool> ForgotPasswordAsync(ApplicationUserRegisterImputModel model)
+    {
         throw new NotImplementedException();
     }
 
-    public Task<bool> RefreshTokenAsync(ApplicationUserInputModel model){
+    public async Task<bool> LoginAsync(ApplicationUserLoginInputModel model)
+    {
+        var result = await signInManager.PasswordSignInAsync(model.Email, model.Password, false, false);
+        return result.Succeeded ? true : throw new Exception("Unable to login, Error: " + result.ToString());
+    }
+
+    public Task<bool> RefreshTokenAsync(ApplicationUserRegisterImputModel model)
+    {
         throw new NotImplementedException();
     }
 
-    public async Task<bool> RegisterAsync(ApplicationUserInputModel model){
+    public async Task<bool> RegisterAsync(ApplicationUserRegisterImputModel model){
         ArgumentNullException.ThrowIfNull(model.Email);
         ArgumentNullException.ThrowIfNull(model.Password);
         var user = new ApplicationUser
@@ -34,14 +42,14 @@ public class AuthenticationService(UserManager<ApplicationUser> userManager,
             LastName = model.LastName,
             DateOfBirth = model.DateOfBirth,
             Gender = model.Gender,
-            RegistrationDate = DateTime.UtcNow
+            registrationDate = DateTime.UtcNow
         };
 
         var result = await userManager.CreateAsync(user, model.Password);
         return result.Succeeded? true: throw new Exception("Unable create user, Error: " + result.Errors);
     }
 
-    public Task<bool> ResetPasswordAsync(ApplicationUserInputModel model){
+    public Task<bool> ResetPasswordAsync(ApplicationUserRegisterImputModel model){
         throw new NotImplementedException();
     }
 }

@@ -2,14 +2,15 @@
 
 using System.Runtime.Serialization;
 
-namespace CRM.Model.Enums;
-
-public enum Gender
+namespace CRM.Model.Enums
 {
-    [EnumMember(Value = "Male")]
-    Male,
-    [EnumMember(Value = "Female")]
-    Female,
-    [EnumMember(Value = "Other")]
-    Other
+    public enum Gender
+    {
+        [EnumMember(Value = "Male")]
+        Male,
+        [EnumMember(Value = "Female")]
+        Female,
+        [EnumMember(Value = "Other")]
+        Other
+    }
 }

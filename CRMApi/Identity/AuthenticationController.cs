@@ -4,6 +4,8 @@ using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Reflection;
 using System.Net;
+using CRM.Service.IService;
+using CRM.Model.InputModels;
 
 namespace CRMApi.Identity
 {
@@ -23,7 +25,7 @@ namespace CRMApi.Identity
 
         [HttpPost("register")]
         [DisplayName("Register")]
-        public async Task<IActionResult> Register([FromBody] ApplicationUserInputModel model)
+        public async Task<IActionResult> Register([FromBody] ApplicationUserRegisterImputModel model)
         {
           var response = await authenticationService.RegisterAsync(model);
           return response ? Ok(response) : StatusCode(500);
@@ -31,7 +33,7 @@ namespace CRMApi.Identity
 
         [HttpPost("forgot-password")]
         [DisplayName("Forgot Password")]
-        public async Task<IActionResult> ForgotPassword([FromBody] ApplicationUserInputModel model)
+        public async Task<IActionResult> ForgotPassword([FromBody] ApplicationUserRegisterImputModel model)
         {
             var response = await authenticationService.ForgotPasswordAsync(model);
             return response ? Ok(response) : StatusCode(500);
@@ -39,7 +41,7 @@ namespace CRMApi.Identity
 
         [HttpPost("reset-password")]
         [DisplayName("Reset Password")]
-        public async Task<IActionResult> ResetPassword([FromBody] ApplicationUserInputModel model)
+        public async Task<IActionResult> ResetPassword([FromBody] ApplicationUserRegisterImputModel model)
         {
             var response = await authenticationService.ResetPasswordAsync(model);
             return response ? Ok(response) : StatusCode(500);
