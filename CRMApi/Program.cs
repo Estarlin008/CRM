@@ -4,6 +4,12 @@ using System.Runtime.InteropServices;
 using System.Runtime.Intrinsics.Arm;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi;
+using CRM.DataAccess;
+using CRM.Model.IdentityModels;
+using CRM.Service;
+using CRM.Service.IService;
+using Microsoft.AspNetCore.Identity;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -15,7 +21,10 @@ builder.Services.AddControllers();
 builder.Services.AddOpenApi();
 builder.Services.AddSwaggerGen(c => {c.SwaggerDoc("v1", new OpenApiInfo { Title = "CRM API", Version = "v1" });});
 
-builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
+builder.Services.AddIdentity<ApplicationUser, IdentityRole>(options =>
+{
+    options.Password.RequireDigit = true;
+})
     .AddEntityFrameworkStores<ApplicationDbContext>()
     .AddDefaultTokenProviders();
 

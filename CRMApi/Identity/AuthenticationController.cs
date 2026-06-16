@@ -20,7 +20,7 @@ namespace CRMApi.Identity
        public async Task<IActionResult> Login([FromBody] ApplicationUserLoginInputModel model)
         {
            var response = await authenticationService.LoginAsync(model);
-           return response ? Ok(response) : StatusCode(500);
+           return response.IsSuccess ? Ok(response) : StatusCode(500);
         }
 
         [HttpPost("register")]
@@ -28,7 +28,7 @@ namespace CRMApi.Identity
         public async Task<IActionResult> Register([FromBody] ApplicationUserRegisterImputModel model)
         {
           var response = await authenticationService.RegisterAsync(model);
-          return response ? Ok(response) : StatusCode(500);
+          return response? Ok(response) : StatusCode(500);
         }
 
         [HttpPost("forgot-password")]
